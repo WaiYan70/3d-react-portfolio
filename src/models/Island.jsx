@@ -19,6 +19,7 @@ const Island = (props) => {
 
     const { nodes, materials } = useGLTF(islandScene);
     return (
+        // it is not primitive element
         <a.group ref={islandRef} {...props}>
             <mesh
                 geometry={nodes.polySurface944_tree_body_0.geometry}
