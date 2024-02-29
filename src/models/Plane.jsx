@@ -10,13 +10,17 @@ const Plane = ({isRotating, ...props}) => {
   const { actions } = useAnimations(animations, planeRef);
 
   // Use an effect to control the plane's animation based on 'isRotating'
-  useEffect(()=>{
-    if(isRotating){
-      actions['Take 001'].play();
-    } else {
-      actions['Take 001'].stop();
-    }
-  },[actions, isRotating]);
+  // useEffect(()=>{
+  //   if(isRotating){
+  //     actions['Take 001'].play();
+  //   } else {
+  //     actions['Take 001'].stop();
+  //   }
+  // },[actions, isRotating]);
+
+  useEffect(() => {
+    actions["Take 001"].play();
+  },[])
 
   return (
     <mesh {...props} ref={planeRef}>

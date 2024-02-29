@@ -60,7 +60,8 @@ const Island = ({isRotating, setIsRotating, setCurrentStage, ...props}) => {
           lastX.current = clientX;
     
           // Update the rotation speed
-          rotationSpeed.current = delta * 0.01 * Math.PI;
+          // Normal speed is "0.01"
+          rotationSpeed.current = delta * 0.005 * Math.PI;
         }
       };
     // user using move with keyoard

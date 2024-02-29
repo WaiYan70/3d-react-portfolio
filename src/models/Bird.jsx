@@ -15,13 +15,13 @@ const Bird = () => {
 
   // useFrame function to update every frame rate
   useFrame(({clock, camera})=>{
-    // Updating this Y position to up and down movement like sin wave
+    // Updating this Y position to up and down movement by using Sin Wave formula
     birdRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
     // if the bird reach a certain endpoint in the map, it will change the bird's direction
-    if(birdRef.current.position.x > camera.position.x + 10){
+    if(birdRef.current.position.x > camera.position.x + 8){
       // change direction backward and rotate the bird 180 degree on y axis
       birdRef.current.rotation.y = Math.PI;
-    } else if(birdRef.current.position.x < camera.position.x - 10){
+    } else if(birdRef.current.position.x < camera.position.x - 8){
       // change direction forward and reset the bird's direction
       birdRef.current.rotation.y = 0;
     }
