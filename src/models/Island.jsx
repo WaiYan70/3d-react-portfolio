@@ -13,7 +13,7 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from '@react-three/fiber';
 import islandScene from '../assets/3d/island.glb';
 
-const Island = ({isRotating, setIsRotating, ...props}) => {
+const Island = ({isRotating, setIsRotating, setCurrentStage, ...props}) => {
     const islandRef = useRef();
     const {gl, viewport} = useThree();
     const { nodes, materials } = useGLTF(islandScene);
@@ -92,6 +92,7 @@ const Island = ({isRotating, setIsRotating, ...props}) => {
             islandRef.current.rotation.y += rotationSpeed.current;
         } else {
             // When rotation, determine the current stage based on island's orientation
+            const rotation = islandRef.current.rotation.y;
             const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
             // set the current stage based on the island's location
             switch (true) {
