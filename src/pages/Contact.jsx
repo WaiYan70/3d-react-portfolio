@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+
+  const formRef = useRef(null);
 
   // Using "useState" to track the state of whether it is clicked on input or not
   const [form, setForm] = useState({name: '', email: '', message: ''});
@@ -9,13 +12,39 @@ const Contact = () => {
   const [isLoading, setIsLoading] = useState(false); 
 
   // track the fox model with clicking or not
-  const handleChange = () => {};
+  const handleChange = (event) => {
+    setForm({...form, [event.target.name]: event.target.value})
+  };
   // Once User clicked on
   const handleFocus = () => {};
+  
   // Once User clicked out
-  const handleBlur = () => {};
+  const handleBlur = () => {};  
+
   // Enable our email JS service to receive emails
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    //service_ttzkad3
+    emailjs.send(
+      import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+      {
+        form_name: form.name,
+        to_name: "Khant Wai Yan",
+        from_email: form.email,
+        to_email: "khantwaiyan11@gmail.com",
+        message: form.message
+      },
+      import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+    ).then(() => {
+      setIsLoading(false);
+      setForm({name:'', email:'', message:''});
+    }).catch((error) => {
+      setIsLoading(false);
+      console.log(error);
+    })
+  };
 
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
