@@ -34,14 +34,8 @@ const Bird = () => {
     // Smoothly interpolate rotation towards target rotation
     birdRef.current.rotation.y += (targetRotation.current - birdRef.current.rotation.y) * rotationSpeed;
 
-    // if(birdRef.current.rotation.y === 0){
-    //   birdRef.current.position.x += 0.01;
-    //   birdRef.current.position.z -= 0.01;
-    // } else {
-    //   birdRef.current.position.x -= 0.01;
-    //   birdRef.current.position.z += 0.01;
-    // }
     // Update the X and Z positions based on the direction (Y position)
+    // if(birdRef.current.rotation.y === 0){}
     if(targetRotation.current === 0){
       // Moving Forward
       birdRef.current.position.x += 0.01;
