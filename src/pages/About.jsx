@@ -6,7 +6,13 @@ import { skills, experiences } from '../constants';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 
+import ContactLink from '../components/ContactLink';
+
 const About = () => {
+  const intersectionObserverProps = {
+    // threshold: 0.5, 
+    rootMargin: '0px 0px 100px 0px', 
+  };
   return (
     <section className="max-container">
       <h1 className="head-text">
@@ -45,9 +51,10 @@ const About = () => {
             </p>
         </div>
         <div className="mt-12 flex">
-            <VerticalTimeline>
+            <VerticalTimeline animate={true}>
               {experiences.map((experience)=>(
                 <VerticalTimelineElement
+                  intersectionObserverProps={intersectionObserverProps}
                   key={experience.company_name}
                   date={experience.date}
                   icon={
@@ -86,6 +93,7 @@ const About = () => {
         </div>
       </div>
       <hr className="border-slate-200" />
+      <ContactLink />
     </section>
   )
 }
